@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쌀먹 일지</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>오늘의 쌀먹</h1>
+        <div class="tab-menu">
+            <button id="inputTab" class="active">입력하기</button>
+            <button id="overviewTab">모아보기</button>
+           
+        </div>
+        <div id="inputFormSection">
+            <form id="expenseForm">
+                <div class="form-group">
+                    <label for="dateInput">날짜 선택:</label>
+                    <input type="date" id="dateInput" class="input-field">
+                </div>
+                <div class="form-group">
+                    <label for="dailyExpense">획득 메소:</label>
+                    <input type="number" id="dailyExpense" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label for="currentPiecePrice">오늘의 조각 최저가:</label>
+                    <input type="number" id="currentPiecePrice" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label for="dailyPieces">획득 조각:</label>
+                    <input type="number" id="dailyPieces" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label for="ricePrice">오늘의 쌀값:</label>
+                    <input type="number" id="ricePrice" class="input-field" required>
+                </div>
+                <button type="button" id="saveButton" class="save-btn">저장</button>
+            </form>
+
+            <!-- 쌀 값과 증감 표시 영역 -->
+            <div id="riceValue" class="record-info"></div>
+            <div id="difference" class="record-info"></div>
+
+            <div id="recordList" class="record-list">
+                <!-- 저장된 기록이 이곳에 표시됨 -->
+            </div>
+            <button type="button" id="clearStorageButton" class="clear-storage-btn">초기화</button>
+        </div>
+
+        <div id="overviewSection" style="display: none;">
+            <div class="month-navigation">
+                <button id="prevMonth" class="nav-btn">&lt;</button>
+                <span id="currentMonth" class="month-label"></span>
+                <button id="nextMonth" class="nav-btn">&gt;</button>
+            </div>
+            <div class="chart-controls">
+                <button class="chart-toggle" id="toggleRice">쌀값</button>
+                <button class="chart-toggle" id="togglePieces">조각</button>
+                <button class="chart-toggle" id="toggleExpense">메소</button>
+            </div>
+            <canvas id="dataChart"></canvas>
+
+            <div id="overviewtablecontainer">
+                <table id="overviewTable">
+                    <thead>
+                        <tr>
+                            <th>날짜</th>
+                            <th>하루 수입</th>
+                            <th>하루 쌀 값</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 월별 기록이 여기에 추가됨 -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="monthly-summary">
+                <p>이 달의 총 수입: <span id="monthlyTotalIncome"></span></p>
+                <p>이 달의 총 쌀 값: <span id="monthlyTotalRiceValue"></span></p>
+            </div>
+            <div class="overall-summary">
+                <p>전체 수입: <span id="overallTotalIncome"></span></p>
+                <p>전체 쌀 값: <span id="overallTotalRiceValue"></span></p>
+            </div>
+        </div>
+    </div>
+    <div id="timerSection" style="display: none;"> <!-- 새로운 타이머 섹션 -->
+        <div class="timer-container">
+            <h2>타이머</h2>
+            <div id="timerDisplay" class="timer-display">00:00:00</div>
+            <div class="timer-controls">
+                <button id="setMaterialCost" class="timer-btn">소재비</button>
+                <button id="setReacquisitionCost" class="timer-btn">재획비</button>
+                <button id="startTimer" class="timer-btn">시작</button>
+                <button id="resetTimer" class="timer-btn">리셋</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js" defer></script>
+</html>
